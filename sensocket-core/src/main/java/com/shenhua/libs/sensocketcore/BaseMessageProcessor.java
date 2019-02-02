@@ -49,10 +49,10 @@ public abstract class BaseMessageProcessor {
     }
 
     /**
-     * 客户端接收到消息回调
+     * TheClientReceivesAMessageCallback
      *
      * @param mClient client
-     * @param mQueen  消息队列
+     * @param mQueen  MessageQueue
      */
     public abstract void onReceiveMessages(BaseClient mClient, LinkedList<Message> mQueen);
 

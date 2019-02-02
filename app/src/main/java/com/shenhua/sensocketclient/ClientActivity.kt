@@ -1,8 +1,8 @@
 package com.shenhua.sensocketclient
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by shenhua on 2018/4/11.
@@ -20,7 +20,7 @@ class ClientActivity : AppCompatActivity() {
                     "TcpBioClientFragment" -> TcpBioClientFragment()
                     "UdpNioClientFragment" -> UdpNioClientFragment()
                     "UdpBioClientFragment" -> UdpBioClientFragment()
-                    else -> Fragment()
+                    else -> androidx.fragment.app.Fragment()
                 }
         supportFragmentManager.beginTransaction().add(R.id.container, fragment).commit()
     }

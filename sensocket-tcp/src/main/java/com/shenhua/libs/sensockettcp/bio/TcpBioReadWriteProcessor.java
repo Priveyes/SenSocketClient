@@ -16,7 +16,7 @@
 
 package com.shenhua.libs.sensockettcp.bio;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.shenhua.libs.sensocketcore.BaseClient;
 
@@ -78,8 +78,7 @@ public class TcpBioReadWriteProcessor {
                 return new Thread(r, "Connect Processor ThreadPool thread:" + integer.getAndIncrement());
             }
         };
-        mExecutorService = new ThreadPoolExecutor(3, 4, 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingDeque<Runnable>(1024), factory);
+        mExecutorService = new ThreadPoolExecutor(3, 4, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>(1024), factory);
     }
 
     public void start() {

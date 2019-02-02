@@ -25,12 +25,12 @@ package com.shenhua.libs.sensocketcore;
 public interface IConnectListener {
 
     /**
-     * 连接成功
+     * ConnectionSucceeded
      */
     void onConnectionSuccess();
 
     /**
-     * 连接失败
+     * ConnectionFailed
      */
     void onConnectionFailed();
 }

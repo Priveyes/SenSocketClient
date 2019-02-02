@@ -46,10 +46,10 @@ class TcpNioClientFragment : BaseFragment() {
         override fun onReceiveMessages(mClient: BaseClient, mQueen: LinkedList<Message>) {
             for (i in mQueen.indices) {
                 val message = mQueen[i]
-                // 此处接收的message.data需要按实际进行编码或进制转换
+                // The message.data received here needs to be encoded or converted in real time.
                 val s = String(message.data, message.offset, message.length)
                 println("--- $s")
-                activity.runOnUiThread {
+                activity!!.runOnUiThread {
                     tvMessage.append("\n$s")
                 }
             }
@@ -58,17 +58,17 @@ class TcpNioClientFragment : BaseFragment() {
 
     private val mConnectResultListener = object : IConnectListener {
         override fun onConnectionSuccess() {
-            activity.runOnUiThread { tvMessage.append("\n 连接成功") }
+            activity!!.runOnUiThread { tvMessage.append("\n ConnectionSucceeded") }
         }
 
         override fun onConnectionFailed() {
-            activity.runOnUiThread { tvMessage.append("\n 连接失败") }
+            activity!!.runOnUiThread { tvMessage.append("\n ConnectionFailed") }
         }
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity.title = getString(R.string.app_name) + "-Tcp Nio"
+        activity!!.title = getString(R.string.app_name) + "-Tcp Nio"
     }
 
     override fun onDestroyView() {

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SenSocketClient.iml" filepath="$PROJECT_DIR$/.idea/SenSocketClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/SenSocketClient.iml" filepath="$PROJECT_DIR$/SenSocketClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/sensocket-core/sensocket-core.iml" filepath="$PROJECT_DIR$/sensocket-core/sensocket-core.iml" />

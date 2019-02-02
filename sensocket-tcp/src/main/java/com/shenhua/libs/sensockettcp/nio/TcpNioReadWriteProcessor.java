@@ -16,7 +16,7 @@
 
 package com.shenhua.libs.sensockettcp.nio;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.shenhua.libs.sensocketcore.BaseClient;
 
@@ -82,8 +82,7 @@ public final class TcpNioReadWriteProcessor {
                 return new Thread(r, "Connect Processor ThreadPool thread:" + integer.getAndIncrement());
             }
         };
-        ExecutorService executor = new ThreadPoolExecutor(2, 4, 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingDeque<Runnable>(1024), factory);
+        ExecutorService executor = new ThreadPoolExecutor(2, 4, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>(1024), factory);
         executor.execute(mConnectProcessor);
     }
 

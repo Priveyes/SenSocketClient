@@ -21,7 +21,7 @@ import com.shenhua.libs.sensocketcore.message.MessageReadQueen;
 import com.shenhua.libs.sensocketcore.message.MessageWriteQueen;
 
 /**
- * Socket 客户端基类
+ * Socket ClientBaseClass
  * Created by shenhua on 2018/4/11.
  *
  * @author shenhua
@@ -29,72 +29,72 @@ import com.shenhua.libs.sensocketcore.message.MessageWriteQueen;
  */
 public abstract class BaseClient {
 
-    public MessageReadQueen mReadMessageQueen = new MessageReadQueen();
+	public MessageReadQueen mReadMessageQueen = new MessageReadQueen();
 
-    public MessageWriteQueen mWriteMessageQueen = new MessageWriteQueen();
+	public MessageWriteQueen mWriteMessageQueen = new MessageWriteQueen();
 
-    protected BaseMessageProcessor mMessageProcessor;
+	protected BaseMessageProcessor mMessageProcessor;
 
-    public BaseClient(BaseMessageProcessor mMessageProcessor) {
-        this.mMessageProcessor = mMessageProcessor;
-    }
+	public BaseClient(BaseMessageProcessor mMessageProcessor) {
+		this.mMessageProcessor = mMessageProcessor;
+	}
 
-    public void clearUnreachableMessages() {
-        Message msg = pollWriteMessage();
-        while (null != msg) {
-            removeWriteMessage(msg);
-            msg = pollWriteMessage();
-        }
-    }
+	public void clearUnreachableMessages() {
+		Message msg = pollWriteMessage();
+		while (null != msg) {
+			removeWriteMessage(msg);
+			msg = pollWriteMessage();
+		}
+	}
 
-    public void onReceiveData(byte[] src, int offset, int length) {
-        Message msg = mReadMessageQueen.build(src, offset, length);
-        mReadMessageQueen.add(msg);
-    }
+	public void onReceiveData(byte[] src, int offset, int length) {
+		Message msg = mReadMessageQueen.build(src, offset, length);
+		mReadMessageQueen.add(msg);
+	}
 
-    public void onReceiveMessageClear() {
-        Message msg = mReadMessageQueen.mReadQueen.poll();
-        while (null != msg) {
-            mReadMessageQueen.remove(msg);
-            msg = mReadMessageQueen.mReadQueen.poll();
-        }
-    }
+	public void onReceiveMessageClear() {
+		Message msg = mReadMessageQueen.mReadQueen.poll();
+		while (null != msg) {
+			mReadMessageQueen.remove(msg);
+			msg = mReadMessageQueen.mReadQueen.poll();
+		}
+	}
 
-    public void onSendMessage(byte[] src, int offset, int length) {
-        Message msg = mWriteMessageQueen.build(src, offset, length);
-        mWriteMessageQueen.add(msg);
-        onCheckConnect();
-    }
+	public void onSendMessage(byte[] src, int offset, int length) {
+		Message msg = mWriteMessageQueen.build(src, offset, length);
+		mWriteMessageQueen.add(msg);
+		onCheckConnect();
+	}
 
-    protected Message pollWriteMessage() {
-        return mWriteMessageQueen.mWriteQueen.poll();
-    }
+	protected Message pollWriteMessage() {
+		return mWriteMessageQueen.mWriteQueen.poll();
+	}
 
-    protected void removeWriteMessage(Message msg) {
-        mWriteMessageQueen.remove(msg);
-    }
+	protected void removeWriteMessage(Message msg) {
+		mWriteMessageQueen.remove(msg);
+	}
 
-    /**
-     * 检测连接回调
-     */
-    public abstract void onCheckConnect();
+	/**
+	 * DetectConnectionCallback
+	 */
+	public abstract void onCheckConnect();
 
-    /**
-     * 关闭回调
-     */
-    public abstract void onClose();
+	/**
+	 * CloseCallback
+	 */
+	public abstract void onClose();
 
-    /**
-     * 读取数据回调
-     *
-     * @return boolean
-     */
-    public abstract boolean onRead();
+	/**
+	 * ReadDataCallback
+	 *
+	 * @return boolean
+	 */
+	public abstract boolean onRead();
 
-    /**
-     * 写数据回调
-     *
-     * @return boolean
-     */
-    public abstract boolean onWrite();
+	/**
+	 * WriteDataCallback
+	 *
+	 * @return boolean
+	 */
+	public abstract boolean onWrite();
 }
